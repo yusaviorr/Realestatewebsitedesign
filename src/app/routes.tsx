@@ -6,6 +6,7 @@ import PropertyDetail from './pages/PropertyDetail';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Adauga from './pages/Adauga';
 import NotFound from './pages/NotFound';
 
 // Admin imports
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: 'properties/:id', Component: PropertyDetail },
       { path: 'about', Component: About },
       { path: 'services', Component: Services },
+      { path: 'adauga', Component: Adauga },
       { path: 'contact', Component: Contact },
       { path: '*', Component: NotFound }
     ]

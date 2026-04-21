@@ -1,6 +1,6 @@
-import { useParams, Link, useNavigate } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { useEffect } from 'react';
-import { MapPin, Bed, Bath, Ruler, Car, ArrowLeft, Phone, Mail } from 'lucide-react';
+import { MapPin, Bed, Bath, Ruler, Car, ArrowLeft, Phone, Mail, Home, Hammer, Zap } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useData } from '../contexts/DataContext';
 
@@ -29,9 +29,9 @@ export default function PropertyDetail() {
             fontSize: '48px',
             fontWeight: 300,
             color: '#f2ece4'
-          }}>Property Not Found</h1>
+          }}>Proprietate Negasita</h1>
           <p className="mb-8" style={{ color: '#8a8379' }}>
-            The property you're looking for doesn't exist.
+            Proprietatea pe care o cautati nu exista.
           </p>
           <Link
             to="/properties"
@@ -53,7 +53,7 @@ export default function PropertyDetail() {
               e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
             }}
           >
-            Browse Properties
+            Exploreaza Proprietatile
           </Link>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function PropertyDetail() {
         onMouseEnter={e => e.currentTarget.style.color = '#f2ece4'}
         onMouseLeave={e => e.currentTarget.style.color = '#8a8379'}>
           <ArrowLeft className="w-4 h-4" />
-          Back to Properties
+          Inapoi la Proprietati
         </Link>
       </div>
 
@@ -120,7 +120,7 @@ export default function PropertyDetail() {
                 fontSize: '32px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Overview</h2>
+              }}>Descriere</h2>
               <p className="text-base leading-relaxed mb-6" style={{ color: '#8a8379' }}>
                 {property.description}
               </p>
@@ -129,7 +129,7 @@ export default function PropertyDetail() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <Ruler className="w-5 h-5" style={{ color: '#c8b99a' }} />
-                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Area</span>
+                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Suprafata</span>
                   </div>
                   <p style={{
                     fontFamily: 'Cormorant Garamond, serif',
@@ -142,7 +142,7 @@ export default function PropertyDetail() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <Bed className="w-5 h-5" style={{ color: '#c8b99a' }} />
-                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Rooms</span>
+                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Camere</span>
                   </div>
                   <p style={{
                     fontFamily: 'Cormorant Garamond, serif',
@@ -155,7 +155,7 @@ export default function PropertyDetail() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <Bath className="w-5 h-5" style={{ color: '#c8b99a' }} />
-                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Baths</span>
+                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Bai</span>
                   </div>
                   <p style={{
                     fontFamily: 'Cormorant Garamond, serif',
@@ -168,7 +168,7 @@ export default function PropertyDetail() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <Car className="w-5 h-5" style={{ color: '#c8b99a' }} />
-                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Garage</span>
+                    <span className="text-xs tracking-[2px] uppercase" style={{ color: '#5a574f' }}>Garaj</span>
                   </div>
                   <p style={{
                     fontFamily: 'Cormorant Garamond, serif',
@@ -180,23 +180,214 @@ export default function PropertyDetail() {
               </div>
             </div>
 
-            {/* Features */}
+            {/* Suprafete */}
             <div>
-              <h2 className="mb-6" style={{
+              <h2 className="mb-6 flex items-center gap-3" style={{
                 fontFamily: 'Cormorant Garamond, serif',
                 fontSize: '32px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Features & Amenities</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {property.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#c8b99a' }}></div>
-                    {feature}
+              }}>
+                <Ruler className="w-7 h-7" style={{ color: '#c8b99a' }} />
+                Suprafete
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {property.usableSurface && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Suprafata utila</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.usableSurface} m²</span>
                   </div>
-                ))}
+                )}
+                {property.totalSurface && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Suprafata totala</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.totalSurface} m²</span>
+                  </div>
+                )}
+                {property.landSurface && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Suprafata teren</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.landSurface} m²</span>
+                  </div>
+                )}
+                {property.yardSurface && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Suprafata curte</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.yardSurface} m²</span>
+                  </div>
+                )}
+                {property.yardType && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Tip curte</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.yardType}</span>
+                  </div>
+                )}
               </div>
             </div>
+
+            {/* Detalii Camere */}
+            <div>
+              <h2 className="mb-6 flex items-center gap-3" style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '32px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>
+                <Home className="w-7 h-7" style={{ color: '#c8b99a' }} />
+                Detalii Camere
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {property.heightRegime && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Regim inaltime</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.heightRegime}</span>
+                  </div>
+                )}
+                {property.bedrooms && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Dormitoare</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.bedrooms}</span>
+                  </div>
+                )}
+                {property.kitchens && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Bucatarii</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.kitchens}</span>
+                  </div>
+                )}
+                {property.kitchenModel && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Model bucatarie</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.kitchenModel}</span>
+                  </div>
+                )}
+                {property.balconies && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Balcoane/Terase</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.balconies}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Materiale Constructie */}
+            <div>
+              <h2 className="mb-6 flex items-center gap-3" style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '32px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>
+                <Hammer className="w-7 h-7" style={{ color: '#c8b99a' }} />
+                Materiale Constructie
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {property.windows && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Ferestre</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.windows}</span>
+                  </div>
+                )}
+                {property.doors && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Usi</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.doors}</span>
+                  </div>
+                )}
+                {property.masonry && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Zidarie</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.masonry}</span>
+                  </div>
+                )}
+                {property.roof && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Acoperis</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.roof}</span>
+                  </div>
+                )}
+                {property.walls && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Pereti</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.walls}</span>
+                  </div>
+                )}
+                {property.floors && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Podele</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.floors}</span>
+                  </div>
+                )}
+                {property.thermalInsulation && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>Izolatii termice</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.thermalInsulation}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Sisteme & Dotari */}
+            <div>
+              <h2 className="mb-6 flex items-center gap-3" style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '32px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>
+                <Zap className="w-7 h-7" style={{ color: '#c8b99a' }} />
+                Sisteme & Dotari
+              </h2>
+              <div className="space-y-6">
+                {property.heating && (
+                  <div>
+                    <p className="text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Incalzire</p>
+                    <p className="text-sm" style={{ color: '#d4cdc4' }}>{property.heating}</p>
+                  </div>
+                )}
+                {property.equipment && property.equipment.length > 0 && (
+                  <div>
+                    <p className="text-xs tracking-[2px] uppercase mb-3" style={{ color: '#5a574f' }}>Dotari</p>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {property.equipment.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
+                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#c8b99a' }}></div>
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {property.utilities && property.utilities.length > 0 && (
+                  <div>
+                    <p className="text-xs tracking-[2px] uppercase mb-3" style={{ color: '#5a574f' }}>Utilitati</p>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {property.utilities.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
+                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#c8b99a' }}></div>
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Alte Detalii */}
+            {property.otherDetails && (
+              <div>
+                <h2 className="mb-6" style={{
+                  fontFamily: 'Cormorant Garamond, serif',
+                  fontSize: '32px',
+                  fontWeight: 400,
+                  color: '#f2ece4'
+                }}>Alte Detalii</h2>
+                <p className="text-base leading-relaxed" style={{ color: '#8a8379' }}>
+                  {property.otherDetails}
+                </p>
+              </div>
+            )}
 
             {/* Gallery */}
             <div>
@@ -205,11 +396,11 @@ export default function PropertyDetail() {
                 fontSize: '32px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Gallery</h2>
+              }}>Galerie</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {property.images.map((img, idx) => (
                   <div key={idx} className="h-64 overflow-hidden border" style={{ borderColor: 'rgba(200,185,154,0.12)' }}>
-                    <ImageWithFallback src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                    <ImageWithFallback src={img} alt={`Galerie ${idx + 1}`} className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -223,15 +414,15 @@ export default function PropertyDetail() {
               backgroundColor: '#0a0a09',
               borderColor: 'rgba(200,185,154,0.12)'
             }}>
-              <p className="text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Price</p>
+              <p className="text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Pret</p>
               <p className="mb-6" style={{
                 fontFamily: 'Cormorant Garamond, serif',
                 fontSize: '42px',
                 fontWeight: 300,
                 color: '#f2ece4',
                 lineHeight: 1
-              }}>{property.price}</p>
-              <p className="text-xs mb-6" style={{ color: '#8a8379' }}>Negotiable</p>
+              }}>{property.priceDisplay}</p>
+              <p className="text-xs mb-6" style={{ color: '#8a8379' }}>Negociabil</p>
 
               <Link to="/contact" className="w-full px-8 py-4 border text-xs tracking-[2.5px] uppercase transition-all inline-flex items-center justify-center" style={{
                 backgroundColor: 'transparent',
@@ -248,7 +439,7 @@ export default function PropertyDetail() {
                 e.currentTarget.style.color = '#f2ece4';
                 e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
               }}>
-                Schedule Viewing
+                Programeaza Vizionare
               </Link>
             </div>
 
@@ -262,13 +453,15 @@ export default function PropertyDetail() {
                 fontSize: '24px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Contact Agent</h3>
+              }}>Contact</h3>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
-                  <Phone className="w-4 h-4" style={{ color: '#c8b99a' }} />
-                  +1 (555) 123-4567
-                </div>
+                {property.ownerPhone && (
+                  <div className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
+                    <Phone className="w-4 h-4" style={{ color: '#c8b99a' }} />
+                    {property.ownerPhone}
+                  </div>
+                )}
                 <div className="flex items-center gap-3 text-sm" style={{ color: '#8a8379' }}>
                   <Mail className="w-4 h-4" style={{ color: '#c8b99a' }} />
                   info@rixar.com
@@ -286,21 +479,27 @@ export default function PropertyDetail() {
                 fontSize: '24px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Property Details</h3>
+              }}>Detalii Proprietate</h3>
 
               <div className="space-y-4 text-sm">
                 <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
-                  <span style={{ color: '#5a574f' }}>Property ID</span>
+                  <span style={{ color: '#5a574f' }}>ID Proprietate</span>
                   <span style={{ color: '#d4cdc4' }}>RX-{id}</span>
                 </div>
                 <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
-                  <span style={{ color: '#5a574f' }}>Type</span>
+                  <span style={{ color: '#5a574f' }}>Tip</span>
                   <span style={{ color: '#d4cdc4' }}>{property.type}</span>
                 </div>
                 <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
-                  <span style={{ color: '#5a574f' }}>Year Built</span>
+                  <span style={{ color: '#5a574f' }}>An constructie</span>
                   <span style={{ color: '#d4cdc4' }}>{property.yearBuilt}</span>
                 </div>
+                {property.yearRenovated && (
+                  <div className="flex justify-between pb-3 border-b" style={{ borderColor: 'rgba(200,185,154,0.08)' }}>
+                    <span style={{ color: '#5a574f' }}>An renovare</span>
+                    <span style={{ color: '#d4cdc4' }}>{property.yearRenovated}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span style={{ color: '#5a574f' }}>Status</span>
                   <span style={{ color: '#d4cdc4' }}>{property.status}</span>

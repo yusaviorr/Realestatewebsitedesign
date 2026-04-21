@@ -5,14 +5,18 @@ import { MapPin, Search, SlidersHorizontal } from 'lucide-react';
 export default function Properties() {
   const [searchParams] = useSearchParams();
   const typeFilter = searchParams.get('type');
+  const listingFilter = searchParams.get('listing');
 
   const [filters, setFilters] = useState({
+    listing: listingFilter || 'all',
     type: typeFilter || 'all',
     location: 'all',
     priceMin: '',
     priceMax: '',
     rooms: 'all'
   });
+
+  const [sortBy, setSortBy] = useState('newest');
 
   const allProperties = [
     {
@@ -26,7 +30,8 @@ export default function Properties() {
       sqm: 620,
       rooms: 7,
       baths: 6,
-      garage: 3
+      garage: 3,
+      dateAdded: '2024-01-15'
     },
     {
       id: 2,
@@ -39,7 +44,8 @@ export default function Properties() {
       sqm: 850,
       rooms: 8,
       baths: 7,
-      garage: 4
+      garage: 4,
+      dateAdded: '2024-02-20'
     },
     {
       id: 3,
@@ -52,7 +58,8 @@ export default function Properties() {
       sqm: 720,
       rooms: 6,
       baths: 5,
-      garage: 2
+      garage: 2,
+      dateAdded: '2024-01-10'
     },
     {
       id: 4,
@@ -65,7 +72,8 @@ export default function Properties() {
       sqm: 920,
       rooms: 9,
       baths: 8,
-      garage: 4
+      garage: 4,
+      dateAdded: '2024-03-05'
     },
     {
       id: 5,
@@ -78,7 +86,8 @@ export default function Properties() {
       sqm: 380,
       rooms: 4,
       baths: 3,
-      garage: 2
+      garage: 2,
+      dateAdded: '2024-02-01'
     },
     {
       id: 6,
@@ -91,13 +100,30 @@ export default function Properties() {
       sqm: 280,
       rooms: 3,
       baths: 2,
-      garage: 1
+      garage: 1,
+      dateAdded: '2024-03-12'
     }
   ];
 
   const formatPrice = (price: number) => {
-    return `$${(price / 1000000).toFixed(1)}M`;
+    return `${(price / 1000000).toFixed(1)}M RON`;
   };
+
+  // Sort properties
+  const sortedProperties = [...allProperties].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-asc':
+        return a.price - b.price;
+      case 'price-desc':
+        return b.price - a.price;
+      case 'newest':
+        return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
+      case 'oldest':
+        return new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime();
+      default:
+        return 0;
+    }
+  });
 
   return (
     <div className="pt-16 md:pt-17">
@@ -118,10 +144,12 @@ export default function Properties() {
           lineHeight: 1,
           marginBottom: '12px'
         }}>
-          Premium <em>Properties</em>
+          Proprietati <em>Premium</em>
         </h1>
         <p className="text-sm max-w-md" style={{ color: '#8a8379' }}>
-          Exclusive selection of luxury properties available for acquisition
+          {filters.listing === 'sale' ? 'Selectie exclusiva de proprietati de lux disponibile pentru vanzare' :
+           filters.listing === 'rent' ? 'Selectie exclusiva de proprietati de lux disponibile pentru inchiriere' :
+           'Selectie exclusiva de proprietati de lux'}
         </p>
       </div>
 
@@ -130,9 +158,27 @@ export default function Properties() {
         backgroundColor: '#0a0a09',
         borderColor: 'rgba(200,185,154,0.08)'
       }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
           <div>
-            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Type</label>
+            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Listing</label>
+            <select
+              value={filters.listing}
+              onChange={(e) => setFilters({ ...filters, listing: e.target.value })}
+              className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
+              style={{
+                backgroundColor: 'transparent',
+                borderColor: 'rgba(200,185,154,0.12)',
+                color: '#d4cdc4'
+              }}
+            >
+              <option value="all">Toate</option>
+              <option value="sale">Vanzare</option>
+              <option value="rent">Inchiriere</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Tip</label>
             <select
               value={filters.type}
               onChange={(e) => setFilters({ ...filters, type: e.target.value })}
@@ -143,16 +189,16 @@ export default function Properties() {
                 color: '#d4cdc4'
               }}
             >
-              <option value="all">All Types</option>
-              <option value="apartment">Apartment</option>
-              <option value="villa">Villa</option>
-              <option value="estate">Estate</option>
-              <option value="land">Land</option>
+              <option value="all">Toate Tipurile</option>
+              <option value="apartment">Apartament</option>
+              <option value="villa">Vila</option>
+              <option value="estate">Proprietate</option>
+              <option value="land">Teren</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Location</label>
+            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Locatie</label>
             <select
               value={filters.location}
               onChange={(e) => setFilters({ ...filters, location: e.target.value })}
@@ -163,19 +209,18 @@ export default function Properties() {
                 color: '#d4cdc4'
               }}
             >
-              <option value="all">All Locations</option>
-              <option value="ca">California</option>
-              <option value="fl">Florida</option>
-              <option value="ny">New York</option>
-              <option value="co">Colorado</option>
+              <option value="all">Toate Locatiile</option>
+              <option value="timisoara">Timisoara</option>
+              <option value="dumbravita">Dumbravita</option>
+              <option value="mosnita">Mosnita</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Min Price</label>
+            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Pret Min</label>
             <input
               type="text"
-              placeholder="$2M"
+              placeholder="2M RON"
               value={filters.priceMin}
               onChange={(e) => setFilters({ ...filters, priceMin: e.target.value })}
               className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
@@ -188,10 +233,10 @@ export default function Properties() {
           </div>
 
           <div>
-            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Max Price</label>
+            <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>Pret Max</label>
             <input
               type="text"
-              placeholder="$20M"
+              placeholder="20M RON"
               value={filters.priceMax}
               onChange={(e) => setFilters({ ...filters, priceMax: e.target.value })}
               className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
@@ -203,7 +248,7 @@ export default function Properties() {
             />
           </div>
 
-          <button className="sm:col-span-2 md:col-span-1 mt-auto px-6 py-3 border text-xs tracking-[2.5px] uppercase transition-all flex items-center justify-center gap-2" style={{
+          <button className="sm:col-span-2 md:col-span-6 lg:col-span-1 mt-auto px-6 py-3 border text-xs tracking-[2.5px] uppercase transition-all flex items-center justify-center gap-2" style={{
             backgroundColor: 'transparent',
             borderColor: 'rgba(200,185,154,0.25)',
             color: '#f2ece4'
@@ -219,7 +264,7 @@ export default function Properties() {
             e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
           }}>
             <Search className="w-4 h-4" />
-            Search
+            Cauta
           </button>
         </div>
       </div>
@@ -228,16 +273,30 @@ export default function Properties() {
       <div className="px-6 md:px-8 lg:px-13 py-12 md:py-16">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 gap-4">
           <p className="text-sm" style={{ color: '#8a8379' }}>
-            Showing {allProperties.length} properties
+            {sortedProperties.length} proprietati gasite
           </p>
-          <button className="flex items-center gap-2 text-xs tracking-[2px] uppercase" style={{ color: '#8a8379' }}>
-            <SlidersHorizontal className="w-4 h-4" />
-            Sort
-          </button>
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="w-4 h-4" style={{ color: '#8a8379' }} />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border text-xs tracking-[2px] uppercase transition-colors focus:outline-none"
+              style={{
+                backgroundColor: 'transparent',
+                borderColor: 'rgba(200,185,154,0.12)',
+                color: '#8a8379'
+              }}
+            >
+              <option value="newest">Cel mai nou</option>
+              <option value="oldest">Cel mai vechi</option>
+              <option value="price-asc">Pret crescator</option>
+              <option value="price-desc">Pret descrescator</option>
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {allProperties.map((prop) => (
+          {sortedProperties.map((prop) => (
             <Link key={prop.id} to={`/properties/${prop.id}`} className="border overflow-hidden cursor-pointer transition-all group" style={{
               backgroundColor: '#0a0a09',
               borderColor: 'rgba(200,185,154,0.12)'
@@ -257,7 +316,9 @@ export default function Properties() {
               </div>
 
               <div className="p-6">
-                <div className="text-xs tracking-[2.5px] uppercase mb-2" style={{ color: '#5a574f' }}>{prop.type} · Sale</div>
+                <div className="text-xs tracking-[2.5px] uppercase mb-2" style={{ color: '#5a574f' }}>
+                  {prop.type} · {filters.listing === 'sale' ? 'Vanzare' : filters.listing === 'rent' ? 'Inchiriere' : 'Vanzare'}
+                </div>
                 <h3 style={{
                   fontFamily: 'Cormorant Garamond, serif',
                   fontSize: '21px',
@@ -277,15 +338,15 @@ export default function Properties() {
                 }}>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.sqm}</strong>
-                    sqm
+                    m²
                   </div>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.rooms}</strong>
-                    rooms
+                    camere
                   </div>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.baths}</strong>
-                    baths
+                    bai
                   </div>
                 </div>
 
@@ -296,7 +357,7 @@ export default function Properties() {
                     color: '#f2ece4',
                     fontWeight: 300
                   }}>{formatPrice(prop.price)}</div>
-                  <span className="text-xs" style={{ color: '#8a8379' }}>View Details →</span>
+                  <span className="text-xs" style={{ color: '#8a8379' }}>Vezi Detalii →</span>
                 </div>
               </div>
             </Link>

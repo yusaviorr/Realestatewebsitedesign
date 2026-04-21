@@ -1,6 +1,10 @@
 import { Link } from 'react-router';
-import { Home as HomeIcon, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import apartmentIcon from '../../imports/image-3.png';
+import houseIcon from '../../imports/image-4.png';
+import landIcon from '../../imports/image-5.png';
+import heroImage from '../../imports/image-6.png';
 
 export default function Home() {
   const featuredProperties = [
@@ -48,95 +52,111 @@ export default function Home() {
   return (
     <>
       {/* Hero - Desktop */}
-      <section className="hidden md:block relative overflow-hidden" style={{ height: '100vh', minHeight: '700px', marginTop: '68px' }}>
+      <section className="hidden md:block relative overflow-hidden" style={{ height: '85vh', minHeight: '600px', marginTop: '68px' }}>
         <div className="absolute inset-0">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85"
+          <img
+            src={heroImage}
             alt="Luxury Estate"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{
-            background: 'linear-gradient(180deg, rgba(5,5,4,0.1) 0%, rgba(5,5,4,0.4) 60%, rgba(5,5,4,0.92) 100%)'
+            background: 'linear-gradient(180deg, rgba(5,5,4,0.1) 0%, rgba(5,5,4,0.5) 100%)'
           }}></div>
         </div>
+      </section>
 
-        <div className="absolute bottom-0 left-0 right-0 px-8 lg:px-13 pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
-            <Link to="/properties?type=apartment" className="group relative overflow-hidden border px-8 py-8 text-left transition-all" style={{
-              backgroundColor: 'rgba(15,15,14,0.85)',
-              backdropFilter: 'blur(12px)',
-              borderColor: 'rgba(200,185,154,0.25)'
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.12)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.5)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(15,15,14,0.85)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
-            }}>
-              <div className="flex items-center gap-4 mb-3">
-                <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '24px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Apartments</h3>
+      {/* Category Cards - Desktop */}
+      <section className="hidden md:block px-8 lg:px-13 -mt-24 mb-16 relative z-10">
+        <div className="grid grid-cols-3 gap-16 max-w-6xl mx-auto">
+          <Link to="/properties?type=Apartament" className="group relative overflow-hidden border text-center transition-all px-6 py-4" style={{
+            backgroundColor: 'rgba(5,5,4,0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderColor: 'rgba(200,185,154,0.3)',
+            boxShadow: '0 8px 32px 0 rgba(0,0,0,0.37)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.15)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.6)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(200,185,154,0.15)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(5,5,4,0.4)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0,0,0,0.37)';
+          }}>
+            <div className="flex flex-col items-center">
+              <div className="h-24 flex items-center justify-center mb-2">
+                <img src={apartmentIcon} alt="Apartamente" className="w-24 h-24" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)', objectFit: 'contain' }} />
               </div>
-              <p className="text-sm" style={{ color: '#8a8379' }}>Luxury urban living spaces</p>
-            </Link>
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '22px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Apartamente</h3>
+            </div>
+          </Link>
 
-            <Link to="/properties?type=villa" className="group relative overflow-hidden border px-8 py-8 text-left transition-all" style={{
-              backgroundColor: 'rgba(15,15,14,0.85)',
-              backdropFilter: 'blur(12px)',
-              borderColor: 'rgba(200,185,154,0.25)'
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.12)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.5)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(15,15,14,0.85)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
-            }}>
-              <div className="flex items-center gap-4 mb-3">
-                <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '24px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Houses & Villas</h3>
+          <Link to="/properties?type=Casa" className="group relative overflow-hidden border px-6 py-4 text-center transition-all" style={{
+            backgroundColor: 'rgba(5,5,4,0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderColor: 'rgba(200,185,154,0.3)',
+            boxShadow: '0 8px 32px 0 rgba(0,0,0,0.37)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.15)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.6)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(200,185,154,0.15)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(5,5,4,0.4)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0,0,0,0.37)';
+          }}>
+            <div className="flex flex-col items-center">
+              <div className="h-24 flex items-center justify-center mb-2">
+                <img src={houseIcon} alt="Case și Vile" className="w-24 h-24" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)', objectFit: 'contain' }} />
               </div>
-              <p className="text-sm" style={{ color: '#8a8379' }}>Exclusive residential estates</p>
-            </Link>
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '22px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Case și Vile</h3>
+            </div>
+          </Link>
 
-            <Link to="/properties?type=land" className="group relative overflow-hidden border px-8 py-8 text-left transition-all" style={{
-              backgroundColor: 'rgba(15,15,14,0.85)',
-              backdropFilter: 'blur(12px)',
-              borderColor: 'rgba(200,185,154,0.25)'
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.12)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.5)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(15,15,14,0.85)';
-              e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
-            }}>
-              <div className="flex items-center gap-4 mb-3">
-                <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '24px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Land</h3>
+          <Link to="/properties?type=Teren" className="group relative overflow-hidden border px-6 py-4 text-center transition-all" style={{
+            backgroundColor: 'rgba(5,5,4,0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderColor: 'rgba(200,185,154,0.3)',
+            boxShadow: '0 8px 32px 0 rgba(0,0,0,0.37)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.15)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.6)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(200,185,154,0.15)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(5,5,4,0.4)';
+            e.currentTarget.style.borderColor = 'rgba(200,185,154,0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0,0,0,0.37)';
+          }}>
+            <div className="flex flex-col items-center">
+              <div className="h-24 flex items-center justify-center mb-2">
+                <img src={landIcon} alt="Teren" className="w-24 h-24" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)', objectFit: 'contain' }} />
               </div>
-              <p className="text-sm" style={{ color: '#8a8379' }}>Premium development plots</p>
-            </Link>
-          </div>
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '22px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Teren</h3>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -144,8 +164,8 @@ export default function Home() {
       <section className="md:hidden relative pt-16">
         {/* Hero Image */}
         <div className="relative h-[70vh] min-h-[500px]">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+          <img
+            src={heroImage}
             alt="Luxury Estate"
             className="w-full h-full object-cover"
           />
@@ -157,7 +177,7 @@ export default function Home() {
           <div className="absolute inset-0 flex flex-col justify-end p-6 pb-8">
             <div className="flex items-center gap-2 mb-4 text-xs tracking-[3px] uppercase" style={{ color: '#b8a88e' }}>
               <div className="w-6 h-px" style={{ backgroundColor: '#b8a88e' }}></div>
-              Luxury Real Estate
+              Imobiliare Premium
             </div>
             <h1 className="mb-4" style={{
               fontFamily: 'Cormorant Garamond, serif',
@@ -166,67 +186,67 @@ export default function Home() {
               lineHeight: 1.1,
               color: '#f2ece4'
             }}>
-              Discover Your <em>Dream</em> Property
+              Descopera Proprietatea <em>Visurilor</em> Tale
             </h1>
             <p className="text-sm mb-6" style={{ color: '#8a8379', maxWidth: '320px' }}>
-              Exceptional properties in the world's most prestigious locations
+              Proprietati exceptionale in cele mai prestigioase locatii
             </p>
           </div>
         </div>
 
         {/* Category Cards */}
-        <div className="px-6 py-8 space-y-4">
-          <Link to="/properties?type=apartment" className="block border p-6 transition-all" style={{
-            backgroundColor: '#0a0a09',
-            borderColor: 'rgba(200,185,154,0.15)'
+        <div className="px-6 py-8 space-y-3">
+          <Link to="/properties?type=Apartament" className="block border p-5 transition-all text-center" style={{
+            backgroundColor: 'rgba(10,10,9,0.6)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderColor: 'rgba(200,185,154,0.25)',
+            boxShadow: '0 4px 16px 0 rgba(0,0,0,0.3)'
           }}>
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="mb-1" style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '22px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Apartments</h3>
-                <p className="text-sm" style={{ color: '#8a8379' }}>Luxury urban living spaces</p>
-              </div>
-              <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
+            <div className="flex flex-col items-center gap-2">
+              <img src={apartmentIcon} alt="Apartamente" className="w-14 h-14" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)' }} />
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '20px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Apartamente</h3>
             </div>
           </Link>
 
-          <Link to="/properties?type=villa" className="block border p-6 transition-all" style={{
-            backgroundColor: '#0a0a09',
-            borderColor: 'rgba(200,185,154,0.15)'
+          <Link to="/properties?type=Casa" className="block border p-5 transition-all text-center" style={{
+            backgroundColor: 'rgba(10,10,9,0.6)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderColor: 'rgba(200,185,154,0.25)',
+            boxShadow: '0 4px 16px 0 rgba(0,0,0,0.3)'
           }}>
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="mb-1" style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '22px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Houses & Villas</h3>
-                <p className="text-sm" style={{ color: '#8a8379' }}>Exclusive residential estates</p>
-              </div>
-              <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
+            <div className="flex flex-col items-center gap-2">
+              <img src={houseIcon} alt="Case și Vile" className="w-14 h-14" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)' }} />
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '20px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Case și Vile</h3>
             </div>
           </Link>
 
-          <Link to="/properties?type=land" className="block border p-6 transition-all" style={{
-            backgroundColor: '#0a0a09',
-            borderColor: 'rgba(200,185,154,0.15)'
+          <Link to="/properties?type=Teren" className="block border p-5 transition-all text-center" style={{
+            backgroundColor: 'rgba(10,10,9,0.6)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderColor: 'rgba(200,185,154,0.25)',
+            boxShadow: '0 4px 16px 0 rgba(0,0,0,0.3)'
           }}>
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="mb-1" style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '22px',
-                  fontWeight: 400,
-                  color: '#f2ece4'
-                }}>Land</h3>
-                <p className="text-sm" style={{ color: '#8a8379' }}>Premium development plots</p>
-              </div>
-              <HomeIcon className="w-6 h-6" style={{ color: '#c8b99a' }} />
+            <div className="flex flex-col items-center gap-2">
+              <img src={landIcon} alt="Teren" className="w-14 h-14" style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(14%) saturate(542%) hue-rotate(359deg) brightness(90%) contrast(85%)' }} />
+              <h3 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '20px',
+                fontWeight: 400,
+                color: '#f2ece4'
+              }}>Teren</h3>
             </div>
           </Link>
         </div>
@@ -237,7 +257,7 @@ export default function Home() {
         <div className="mb-11">
           <div className="flex items-center gap-3 mb-4 text-xs tracking-[4px] uppercase" style={{ color: '#b8a88e' }}>
             <div className="w-6 h-px" style={{ backgroundColor: '#b8a88e' }}></div>
-            Featured Selection
+            Selectie Evidentiata
           </div>
           <div className="flex items-end justify-between">
             <h2 style={{
@@ -247,7 +267,7 @@ export default function Home() {
               lineHeight: 1.1,
               color: '#f2ece4'
             }}>
-              <em>Exclusive</em> Properties
+              Proprietati <em>Exclusive</em>
             </h2>
             <Link to="/properties" className="hidden md:inline-flex items-center gap-3 text-xs tracking-[2.5px] uppercase border px-7 py-3 transition-all" style={{
               color: '#f2ece4',
@@ -262,12 +282,12 @@ export default function Home() {
               e.currentTarget.style.borderColor = 'rgba(200,185,154,0.25)';
               e.currentTarget.style.backgroundColor = 'transparent';
             }}>
-              View All Properties →
+              Vezi Toate Proprietatile →
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredProperties.map((prop) => (
             <Link key={prop.id} to={`/properties/${prop.id}`} className="border overflow-hidden cursor-pointer transition-all group" style={{
               backgroundColor: '#0a0a09',
@@ -288,7 +308,7 @@ export default function Home() {
               </div>
 
               <div className="p-6">
-                <div className="text-xs tracking-[2.5px] uppercase mb-2" style={{ color: '#5a574f' }}>{prop.type} · Sale</div>
+                <div className="text-xs tracking-[2.5px] uppercase mb-2" style={{ color: '#5a574f' }}>{prop.type} · Vanzare</div>
                 <h3 style={{
                   fontFamily: 'Cormorant Garamond, serif',
                   fontSize: '21px',
@@ -308,15 +328,15 @@ export default function Home() {
                 }}>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.sqm}</strong>
-                    sqm
+                    m²
                   </div>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.rooms}</strong>
-                    rooms
+                    camere
                   </div>
                   <div className="flex flex-col gap-px">
                     <strong style={{ fontSize: '15px', color: '#d4cdc4', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400 }}>{prop.baths}</strong>
-                    baths
+                    bai
                   </div>
                 </div>
 
@@ -327,40 +347,13 @@ export default function Home() {
                     color: '#f2ece4',
                     fontWeight: 300
                   }}>{prop.price}</div>
-                  <span className="text-xs" style={{ color: '#8a8379' }}>View Details →</span>
+                  <span className="text-xs" style={{ color: '#8a8379' }}>Vezi Detalii →</span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
       </section>
-
-      {/* Stats */}
-      <div className="border-t border-b grid grid-cols-2 lg:grid-cols-4" style={{
-        backgroundColor: '#0c0c0b',
-        borderColor: 'rgba(200,185,154,0.12)'
-      }}>
-        {[
-          { num: '15+', label: 'Years of Experience' },
-          { num: '860', label: 'Properties Sold' },
-          { num: '98%', label: 'Satisfied Clients' },
-          { num: '12', label: 'Expert Consultants' }
-        ].map((stat, idx) => (
-          <div key={idx} className={`px-6 md:px-8 lg:px-12 py-10 md:py-13 border-r lg:border-b-0 ${idx >= 2 ? 'border-b-0' : 'border-b'} ${idx % 2 === 1 ? 'border-r-0' : ''} lg:border-r lg:last:border-r-0`} style={{
-            borderColor: 'rgba(200,185,154,0.12)'
-          }}>
-            <div style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(36px, 8vw, 52px)',
-              fontWeight: 300,
-              color: '#f2ece4',
-              lineHeight: 1,
-              marginBottom: '8px'
-            }}>{stat.num}</div>
-            <div className="text-xs tracking-[2px] uppercase" style={{ color: '#8a8379' }}>{stat.label}</div>
-          </div>
-        ))}
-      </div>
     </>
   );
 }

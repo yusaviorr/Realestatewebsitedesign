@@ -1,6 +1,9 @@
 import { Outlet, Link, useLocation } from 'react-router';
-import { Home, Facebook, Instagram, Menu, X } from 'lucide-react';
+import { Facebook, Instagram, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import logo from '../imports/logo_upscaled.png';
+import anpcLogo from '../imports/image-7.png';
+import euLogo from '../imports/image-8.png';
 
 export default function Root() {
   const location = useLocation();
@@ -28,16 +31,8 @@ export default function Root() {
       }}>
         <div className="flex items-center justify-between px-6 md:px-8 lg:px-13 h-16 md:h-17">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 md:gap-3" onClick={() => setMobileMenuOpen(false)}>
-            <div className="w-8 md:w-9 h-8 md:h-9 rounded-full border flex items-center justify-center" style={{ borderColor: 'rgba(200,185,154,0.35)' }}>
-              <Home className="w-4 h-4" style={{ color: '#c8b99a' }} />
-            </div>
-            <span style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(14px, 3vw, 17px)',
-              letterSpacing: '2.5px',
-              color: '#f2ece4'
-            }}>RIXAR</span>
+          <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+            <img src={logo} alt="RIXAR" className="h-16 md:h-20" />
           </Link>
 
           {/* Center Navigation */}
@@ -50,40 +45,40 @@ export default function Root() {
                 onMouseEnter={e => e.currentTarget.style.color = '#f2ece4'}
                 onMouseLeave={e => e.currentTarget.style.color = isActive('/') ? '#f2ece4' : '#8a8379'}
               >
-                Home
+                Acasa
               </Link>
             </li>
             <li>
               <Link
-                to="/properties"
+                to="/properties?listing=sale"
                 className="text-xs tracking-[2.5px] uppercase transition-colors"
                 style={{ color: isActive('/properties') ? '#f2ece4' : '#8a8379' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#f2ece4'}
                 onMouseLeave={e => e.currentTarget.style.color = isActive('/properties') ? '#f2ece4' : '#8a8379'}
               >
-                Properties
+                Vanzari
               </Link>
             </li>
             <li>
               <Link
-                to="/services"
+                to="/properties?listing=rent"
                 className="text-xs tracking-[2.5px] uppercase transition-colors"
-                style={{ color: isActive('/services') ? '#f2ece4' : '#8a8379' }}
+                style={{ color: isActive('/properties') ? '#f2ece4' : '#8a8379' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#f2ece4'}
-                onMouseLeave={e => e.currentTarget.style.color = isActive('/services') ? '#f2ece4' : '#8a8379'}
+                onMouseLeave={e => e.currentTarget.style.color = isActive('/properties') ? '#f2ece4' : '#8a8379'}
               >
-                Services
+                Inchirieri
               </Link>
             </li>
             <li>
               <Link
-                to="/about"
+                to="/adauga"
                 className="text-xs tracking-[2.5px] uppercase transition-colors"
-                style={{ color: isActive('/about') ? '#f2ece4' : '#8a8379' }}
+                style={{ color: isActive('/adauga') ? '#f2ece4' : '#8a8379' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#f2ece4'}
-                onMouseLeave={e => e.currentTarget.style.color = isActive('/about') ? '#f2ece4' : '#8a8379'}
+                onMouseLeave={e => e.currentTarget.style.color = isActive('/adauga') ? '#f2ece4' : '#8a8379'}
               >
-                About
+                Adauga
               </Link>
             </li>
             <li>
@@ -154,37 +149,37 @@ export default function Root() {
                   className="block text-center py-4 text-base tracking-[3px] uppercase transition-colors"
                   style={{ color: isActive('/') ? '#f2ece4' : '#8a8379' }}
                 >
-                  Home
+                  Acasa
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/properties"
+                  to="/properties?listing=sale"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-center py-4 text-base tracking-[3px] uppercase transition-colors"
                   style={{ color: isActive('/properties') ? '#f2ece4' : '#8a8379' }}
                 >
-                  Properties
+                  Vanzari
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/properties?listing=rent"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-center py-4 text-base tracking-[3px] uppercase transition-colors"
-                  style={{ color: isActive('/services') ? '#f2ece4' : '#8a8379' }}
+                  style={{ color: isActive('/properties') ? '#f2ece4' : '#8a8379' }}
                 >
-                  Services
+                  Inchirieri
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/about"
+                  to="/adauga"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-center py-4 text-base tracking-[3px] uppercase transition-colors"
-                  style={{ color: isActive('/about') ? '#f2ece4' : '#8a8379' }}
+                  style={{ color: isActive('/adauga') ? '#f2ece4' : '#8a8379' }}
                 >
-                  About
+                  Adauga
                 </Link>
               </li>
               <li>
@@ -226,17 +221,17 @@ export default function Root() {
         backgroundColor: '#0a0a09',
         borderColor: 'rgba(200,185,154,0.12)'
       }}>
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center" style={{ borderColor: 'rgba(200,185,154,0.3)' }}>
-              <Home className="w-4 h-4" style={{ color: '#c8b99a' }} />
-            </div>
-            <span style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '17px',
-              letterSpacing: '2.5px',
-              color: '#f2ece4'
-            }}>RIXAR</span>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
+          <div className="flex items-center">
+            <img src={logo} alt="RIXAR" className="h-20" />
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
+              <img src={anpcLogo} alt="ANPC" className="h-12" />
+            </a>
+            <a href="https://consumer-redress.ec.europa.eu/site-relocation_en?event=main.home2.show&lng=RO" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
+              <img src={euLogo} alt="EU Consumer Protection" className="h-12" />
+            </a>
           </div>
           <p className="text-xs" style={{ color: '#5a574f' }}>© 2026 Rixar · All rights reserved</p>
         </div>

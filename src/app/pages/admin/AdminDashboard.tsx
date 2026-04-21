@@ -8,30 +8,30 @@ export default function AdminDashboard() {
   const statsDisplay = [
     {
       icon: Building2,
-      label: 'Total Properties',
+      label: 'Total Proprietati',
       value: stats.totalProperties.toString(),
       change: `${stats.activeProperties} active`,
       trend: 'up'
     },
     {
       icon: Eye,
-      label: 'Page Views',
+      label: 'Vizualizari',
       value: stats.totalViews.toLocaleString(),
-      change: 'Total across all properties',
+      change: 'Total pentru toate proprietatile',
       trend: 'up'
     },
     {
       icon: MessageSquare,
-      label: 'Total Inquiries',
+      label: 'Total Mesaje',
       value: stats.totalInquiries.toString(),
-      change: `${stats.newInquiries} unread`,
+      change: `${stats.newInquiries} necitite`,
       trend: 'up'
     },
     {
       icon: Users,
-      label: 'Active Listings',
+      label: 'Listari Active',
       value: stats.activeProperties.toString(),
-      change: 'Currently available',
+      change: 'Disponibile acum',
       trend: 'up'
     }
   ];
@@ -55,9 +55,9 @@ export default function AdminDashboard() {
           fontSize: 'clamp(24px, 5vw, 32px)',
           fontWeight: 300,
           color: '#f2ece4'
-        }}>Dashboard</h1>
+        }}>Panou Control</h1>
         <p className="text-sm mt-1" style={{ color: '#8a8379' }}>
-          Welcome back, Administrator
+          Bine ai revenit, Administrator
         </p>
       </div>
 
@@ -108,7 +108,7 @@ export default function AdminDashboard() {
                 fontSize: '20px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Top Performing Properties</h2>
+              }}>Proprietati Populare</h2>
             </div>
             <div className="p-6">
               <div className="space-y-4">
@@ -121,11 +121,11 @@ export default function AdminDashboard() {
                       <div className="flex items-center gap-4 text-xs" style={{ color: '#8a8379' }}>
                         <span className="flex items-center gap-1">
                           <Eye className="w-3 h-3" />
-                          {prop.views} views
+                          {prop.views} vizualizari
                         </span>
                         <span className="flex items-center gap-1">
                           <MessageSquare className="w-3 h-3" />
-                          {prop.inquiries} inquiries
+                          {prop.inquiries} mesaje
                         </span>
                       </div>
                     </div>
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
                 fontSize: '20px',
                 fontWeight: 400,
                 color: '#f2ece4'
-              }}>Recent Inquiries</h2>
+              }}>Mesaje Recente</h2>
             </div>
             <div className="p-6">
               <div className="space-y-4">

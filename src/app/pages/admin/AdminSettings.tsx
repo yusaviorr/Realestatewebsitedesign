@@ -10,9 +10,9 @@ export default function AdminSettings() {
           fontSize: 'clamp(24px, 5vw, 32px)',
           fontWeight: 300,
           color: '#f2ece4'
-        }}>Settings</h1>
+        }}>Setari</h1>
         <p className="text-sm mt-1" style={{ color: '#8a8379' }}>
-          Manage your account and application settings
+          Gestioneaza contul si setarile aplicatiei
         </p>
       </div>
 
@@ -24,17 +24,17 @@ export default function AdminSettings() {
             fontSize: 'clamp(20px, 4vw, 24px)',
             fontWeight: 400,
             color: '#f2ece4'
-          }}>Company Information</h2>
+          }}>Informatii Companie</h2>
 
           <div className="space-y-4 md:space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
                 <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>
-                  Company Name
+                  Nume Companie
                 </label>
                 <input
                   type="text"
-                  defaultValue="Rixar Luxury Real Estate"
+                  defaultValue="Rixar Imobiliare Premium"
                   className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
                   style={{
                     backgroundColor: 'transparent',
@@ -52,7 +52,7 @@ export default function AdminSettings() {
                 </label>
                 <input
                   type="email"
-                  defaultValue="info@rixar.com"
+                  defaultValue="info@rixar.ro"
                   className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
                   style={{
                     backgroundColor: 'transparent',
@@ -68,11 +68,11 @@ export default function AdminSettings() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>
-                  Phone
+                  Telefon
                 </label>
                 <input
                   type="tel"
-                  defaultValue="+1 (555) 123-4567"
+                  defaultValue="+40 722 123 456"
                   className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
                   style={{
                     backgroundColor: 'transparent',
@@ -86,11 +86,11 @@ export default function AdminSettings() {
 
               <div>
                 <label className="block text-xs tracking-[2px] uppercase mb-2" style={{ color: '#5a574f' }}>
-                  Address
+                  Adresa
                 </label>
                 <input
                   type="text"
-                  defaultValue="123 Luxury Avenue, Suite 500"
+                  defaultValue="Bucuresti, Sector 1, Str. Aviatorilor nr. 10"
                   className="w-full px-4 py-3 border text-sm transition-colors focus:outline-none"
                   style={{
                     backgroundColor: 'transparent',
@@ -174,7 +174,7 @@ export default function AdminSettings() {
             }}
           >
             <Save className="w-4 h-4" />
-            Save Changes
+            Salveaza Modificarile
           </button>
         </div>
       </div>

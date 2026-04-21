@@ -1,7 +1,8 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router';
-import { Home, LayoutDashboard, Building2, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Building2, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import logo from '../../../imports/logo_upscaled.png';
 
 export default function AdminLayout() {
   const navigate = useNavigate();
@@ -27,10 +28,10 @@ export default function AdminLayout() {
   };
 
   const navItems = [
-    { path: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { path: '/admin/properties', icon: Building2, label: 'Properties' },
-    { path: '/admin/inquiries', icon: MessageSquare, label: 'Inquiries' },
-    { path: '/admin/settings', icon: Settings, label: 'Settings' }
+    { path: '/admin/dashboard', icon: LayoutDashboard, label: 'Panou Control' },
+    { path: '/admin/properties', icon: Building2, label: 'Proprietati' },
+    { path: '/admin/inquiries', icon: MessageSquare, label: 'Mesaje' },
+    { path: '/admin/settings', icon: Settings, label: 'Setari' }
   ];
 
   return (
@@ -40,19 +41,8 @@ export default function AdminLayout() {
         backgroundColor: '#0a0a09',
         borderColor: 'rgba(200,185,154,0.12)'
       }}>
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border flex items-center justify-center" style={{
-            borderColor: 'rgba(200,185,154,0.35)',
-            color: '#c8b99a'
-          }}>
-            <Home className="w-4 h-4" />
-          </div>
-          <span style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontSize: '14px',
-            letterSpacing: '2px',
-            color: '#f2ece4'
-          }}>RIXAR ADMIN</span>
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="RIXAR" className="h-10" />
         </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -103,7 +93,7 @@ export default function AdminLayout() {
                 style={{ color: '#8a8379' }}
               >
                 <LogOut className="w-5 h-5" />
-                <span className="text-base tracking-wide">Logout</span>
+                <span className="text-base tracking-wide">Deconectare</span>
               </button>
             </div>
           </div>
@@ -121,19 +111,8 @@ export default function AdminLayout() {
         }}>
           {sidebarOpen ? (
             <>
-              <Link to="/" className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full border flex items-center justify-center flex-shrink-0" style={{
-                  borderColor: 'rgba(200,185,154,0.35)',
-                  color: '#c8b99a'
-                }}>
-                  <Home className="w-4 h-4" />
-                </div>
-                <span style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '14px',
-                  letterSpacing: '2px',
-                  color: '#f2ece4'
-                }}>RIXAR ADMIN</span>
+              <Link to="/" className="flex items-center">
+                <img src={logo} alt="RIXAR" className="h-12" />
               </Link>
               <button
                 onClick={() => setSidebarOpen(false)}
@@ -200,11 +179,11 @@ export default function AdminLayout() {
             style={{ color: '#8a8379' }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(200,185,154,0.05)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-            title={!sidebarOpen ? 'Logout' : ''}
+            title={!sidebarOpen ? 'Deconectare' : ''}
           >
             <LogOut className="w-5 h-5 flex-shrink-0" />
             {sidebarOpen && (
-              <span className="text-sm tracking-wide">Logout</span>
+              <span className="text-sm tracking-wide">Deconectare</span>
             )}
           </button>
         </div>
